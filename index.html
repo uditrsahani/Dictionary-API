@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,12 +39,17 @@
             cursor: pointer;
         }
 
-        #dictionary-container {
+        #dictionary-container,
+        .container2 {
             margin: 20px;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container2 {
+            line-height: 2;
         }
 
         footer {
@@ -55,11 +61,20 @@
             bottom: 0;
             width: 100%;
         }
-        a{
+
+        a {
             color: white;
         }
+
+        #containerLink>a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        #containerLink {}
     </style>
 </head>
+
 <body>
 
     <header>
@@ -76,14 +91,18 @@
         <p id="phonetic"></p>
         <p id="meaning"></p>
         <p id="audioerror"></p>
+
         <audio style="display: none;" id="audio" controls></audio>
+
     </div>
 
-    <div id="dictionary-container">
-        <p id="partofspeech"></p>
-        <p id="definition"></p>
-        <p id="synonyms"></p>
-        <p id="antonyms"></p>
+    <div id="containerLink" class="container2">
+
+    </div>
+
+
+    <div id="container2" class="container2">
+        <p class="definition"></p>
     </div>
 
     <footer>
@@ -91,4 +110,5 @@
     </footer>
     <script src="app2.js"></script>
 </body>
+
 </html>
