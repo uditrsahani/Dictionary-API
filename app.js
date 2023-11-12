@@ -1,6 +1,6 @@
-// alert(
-//   "This website is made by a Siam University student. This is not the university's official website."
-// );
+alert(
+  "This website is made by a Siam University student. This is not the university's official website."
+);
 document.getElementById("fetchDataBtn").addEventListener("click", fetchData);
 
 function fetchData() {
@@ -24,6 +24,8 @@ function fetchData() {
       const origin = data[0].origin;
 
       //DOM Variable
+      //accessing source URL
+
       const output = document.getElementById("dictionary-container");
       const wordOutput = document.getElementById("word");
       const phoneticOutput = document.getElementById("phonetic");
@@ -31,6 +33,10 @@ function fetchData() {
       const meaningOutput = document.getElementById("meaning");
       const exampleOutput = document.getElementById("example");
       const audiorror = document.getElementById("audioerror");
+      // const readmore = document.getElementById("readmore");
+      //source URL
+      const sourceURL = data[0].sourceUrls[0];
+      console.log(sourceURL);
 
       //Displaying ouput
       wordOutput.innerText = "Word: " + word;
@@ -39,9 +45,7 @@ function fetchData() {
         phoneticOutput.innerText = "Phonetic: " + phonetic;
       }
 
-      // let audioArray = audio.split(".");
-      // console.log(audioArray[audioArray.length - 1])
-
+      //displaying audio if it is available
       audio.split(".");
       if (audio.length >= 1) {
         console.log("Audio is okay");
@@ -49,29 +53,36 @@ function fetchData() {
         audioOutput.src = audio;
         audiorror.innerText = "";
       } else {
-        console.log("Audio is not okay");
+        //hiding audio when it is not available
         audioOutput.style.display = "none";
         audiorror.innerText = "Audio: Not available for this word.";
       }
 
-      //definitions
-      const partofspeech = document.getElementById("partofspeech");
-      const definition = document.getElementById("definition");
-      const synonyms = document.getElementById("synonyms");
-      const antonyms = document.getElementById("antonyms");
-      data.forEach((entry) => {
-        entry.meanings.forEach((meaning) => {
-          meaning.definitions.forEach((def) => {
-            console.log(`Word: ${entry.word}`);
-            partofspeech.innerHTML = `Part of Speech: ${meaning.partOfSpeech}`;
+      //displaying source URL:
+      const container1 = document.getElementById("containerLink");
+      container1.innerHTML = "";
+      // const readat = `Read about ${word} at:`;
+      const link = document.createElement("a");
+      link.textContent = `Read more about ${word} at: ${sourceURL}`;
+      link.setAttribute("href", sourceURL);
+      container1.appendChild(link);
+      console.log(link);
 
-            definition.innerHTML = `Definition: ${def.definition}`;
+      //accessing definition array
+      const definition = data[0].meanings[0].definitions;
 
-            synonyms.innnerHTML = `Synonyms: ${def.synonyms}`;
+      //creating defition div
+      const container = document.getElementById("container2");
 
-            antonyms.innerHTML = `Antonyms: ${def.antonyms}`;
-          });
-        });
+      //looping through the definitions
+      container.innerHTML = "";
+      const title = document.createElement("h4");
+      title.textContent = "Meanings & Definitions";
+      container.appendChild(title);
+      definition.forEach((defi, index) => {
+        const paragraph = document.createElement("li");
+        paragraph.textContent = defi.definition;
+        container.appendChild(paragraph);
       });
     })
     .catch((error) => {
