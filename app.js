@@ -1,6 +1,4 @@
-alert(
-  "This website is made by a Siam University student. This is not the university's official website."
-);
+
 document.getElementById("fetchDataBtn").addEventListener("click", fetchData);
 
 function fetchData() {
@@ -27,6 +25,7 @@ function fetchData() {
       //accessing source URL
 
       const output = document.getElementById("dictionary-container");
+      output.style.display = ""
       const wordOutput = document.getElementById("word");
       const phoneticOutput = document.getElementById("phonetic");
       const audioOutput = document.getElementById("audio");
@@ -60,6 +59,7 @@ function fetchData() {
 
       //displaying source URL:
       const container1 = document.getElementById("containerLink");
+      container1.style.display = ""
       container1.innerHTML = "";
       // const readat = `Read about ${word} at:`;
       const link = document.createElement("a");
@@ -73,6 +73,8 @@ function fetchData() {
 
       //creating defition div
       const container = document.getElementById("container2");
+
+      container.style.display = ""
 
       //looping through the definitions
       container.innerHTML = "";
